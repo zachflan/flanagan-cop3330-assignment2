@@ -5,6 +5,8 @@
 
 package ex24;
 
+import java.util.Arrays;
+import java.util.Locale;
 import java.util.Scanner;
 
 public class App {
@@ -20,29 +22,11 @@ public class App {
 
         readInput();
 
-//        Scanner num1 = new Scanner(System.in);
-//        System.out.print("Enter the first number: ");
-//        String num1S = num1.nextLine();
-//        int num1I = Integer.parseInt(num1S);
-//        if(num1I > largest){
-//            largest = num1I;
-//        }
-//
-//        Scanner num2 = new Scanner(System.in);
-//        System.out.print("Enter the second number: ");
-//        String num2S = num2.nextLine();
-//        int num2I = Integer.parseInt(num2S);
-//        if(num2I > largest){
-//            largest = num2I;
-//        }
-//
-//        Scanner num3 = new Scanner(System.in);
-//        System.out.print("Enter the third number: ");
-//        String num3S = num3.nextLine();
-//        int num3I = Integer.parseInt(num3S);
-//        if(num3I > largest){
-//            largest = num3I;
-//        }
+        boolean result = isAnagram(word1, word2);
+
+        String output = giveResult(result);
+
+        System.out.println(output);
     }
 
     public static void readInput() {
@@ -51,5 +35,26 @@ public class App {
 
         System.out.print("Enter the second string: ");
         word2 = in.next();
+    }
+
+    static boolean isAnagram(String string1, String string2) {
+        if (string1.length() != string2.length()) {
+            return false;
+        }
+        char[] a1 = string1.toCharArray();
+        char[] a2 = string2.toCharArray();
+        Arrays.sort(a1);
+        Arrays.sort(a2);
+        return Arrays.equals(a1, a2);
+    }
+
+    public static String giveResult(boolean isAnagram) {
+        String output;
+        if(isAnagram) {
+            output = "is anagram";
+        } else {
+            output = "is not anagram";
+        }
+        return output;
     }
 }
